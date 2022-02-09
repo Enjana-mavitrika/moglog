@@ -1,0 +1,47 @@
+<section>
+    <nav class="row">
+        <fa class="btn btn-info fa" name="chevron-left" size="3x" (click)=" onClickPreviousPages()"></fa>
+        <h3>PAGES {{ currentPages }}</h3>
+        <fa class="btn btn-info fa" name="chevron-right" size="3x" (click)="onClickNextPages()"></fa>
+    </nav>
+
+    <article class="row">
+        <p *ngFor="let imgUrl of pages"><img [src]="imgUrl" alt="modele catalogue" width="296" height="421"/></p>
+    </article>
+
+    <footer class="row">
+        <div class="col-sm-8" id="modele">
+            <fa class="btn btn-info fa" name="arrow-left" size="2x"></fa>
+            <div class="custom-control custom-checkbox checkbox">
+                <input type="checkbox" class="custom-control-input" id="check-model-1" (change)="onChangeSelectModel($event, basicModal);">
+                <label class="custom-control-label" for="check-model-1">MODELE N°{{ currentModel }}</label>
+            </div>
+            <fa class="btn btn-info fa" name="arrow-right" size="2x"></fa>
+        </div>
+        <div class="col-sm-4">
+            1/2
+        </div>
+    </footer>
+</section>
+
+<!-- Modal Model choice confirmation -->
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Choix d'un modèle de catalogue</h4>
+        </div>
+        <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir utiliser le <strong>MODELE  N° {{ selectedModel }}</strong> pour votre catalogue ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="primary" class="waves-light" aria-label="Close" (click)="basicModal.hide();onClickCancel()" mdbWavesEffect>Annuler</button>
+          <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.hide();" mdbWavesEffect>Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- /.Modal Model choice confirmation -->

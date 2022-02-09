@@ -1,0 +1,201 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="formBox">
+
+
+
+
+        <!-- email -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="inputBox">
+              <mat-form-field>
+                <input matInput placeholder="Enter your email" [formControl]="email" class="input" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- titre -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="inputBox">
+              <mat-form-field>
+                <input matInput placeholder="Enter your titre" [formControl]="titre" class="input" required>
+                <mat-error *ngIf="titre.invalid">{{getErrorMessage1()}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="inputBox">
+              <mat-form-field>
+                <textarea matInput placeholder="Description" [formControl]="description" class="input"
+                  required></textarea>
+                <mat-error *ngIf="description.invalid">{{getErrorMessage2()}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <!-- resumé -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="inputBox">
+              <mat-form-field>
+                <textarea matInput [formControl]="resume" placeholder="Resumé" class="input" required></textarea>
+                <mat-error *ngIf="resume.invalid">{{getErrorMessage3()}}</mat-error>
+
+              </mat-form-field>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Nom de l'entreprise -->
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="inputBox">
+              <mat-form-field>
+                <input matInput type="text" [formControl]="entreprise" placeholder="Nom de l'entreprise (facultatif)" name=""
+                  class="input">
+                <mat-error *ngIf="entreprise.invalid">{{getErrorMessage5()}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <!-- Nom de l'auteur -->
+          <div class="col-sm-6">
+            <div class="inputBox">
+              <mat-form-field>
+                <div class="inputText"></div>
+                <input matInput type="text" [formControl]="auteur" placeholder="Nom de l'auteur" name="" class="input"
+                  required>
+                <mat-error *ngIf="titre.invalid">{{getErrorMessage6()}}</mat-error>
+
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telephone -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="inputBox">
+              <mat-form-field>
+                <div class="inputText"></div>
+                <input matInput type="text" [formControl]="tel" placeholder="Téléphone" name="" class="input" required
+                  (keypress)="keyPress($event)" minlength=10 maxlength=10>
+                <mat-error *ngIf="titre.invalid">{{getErrorMessage4()}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pic 1 -->
+         <div class="row">
+
+          <div class="col-sm-6">
+            <label mdbBtn color="default" size="md" class="waves-light" mdbWavesEffect>
+              <fa name="upload" size="2x"></fa><br />
+              Importer une image de couverture - face
+              <input id="input-file" #file2 type="file" accept='image/*' (change)="preview2(file2.files)">
+
+            </label>
+          </div>
+
+         <!-- Pic 2 -->
+          <div class="col-sm-6">
+            <label mdbBtn color="default" size="md" class="waves-light" mdbWavesEffect>
+              <fa name="upload" size="2x"></fa><br />
+              Importer une image de couverture - dos
+              <input id="input-file2" #file type="file" accept='image/*' (change)="preview1(file.files)">
+            </label>
+          </div>
+
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="preview">
+              <fa name="picture-o" size="4x" *ngIf="pic1==null"></fa>
+              <!--Card-->
+              <mdb-card class="mdb-card" *ngIf="pic1">
+                <!--Card image-->
+                <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                    <mdb-card-img [src]="pic1.url"></mdb-card-img>
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!--/Card image-->
+
+                <mdb-card-body class="mdb-card-body text-center">
+                    <footer class="row">
+                        <div class="col-md-4">
+                            <fa [class]="(pic1.isValid && pic1.canFit(catalogModel.pageWidth, catalogModel.pageHeight)) ? 'valid-icon' : 'invalid-icon'" [name]="(pic1.isValid && pic1.canFit(catalogModel.pageWidth, catalogModel.pageHeight)) ? 'check-circle' : 'times-circle'" size="2x"></fa>
+                        </div>
+                        <div id="infos" class="col-md-8">
+                            <small><strong>size:</strong> {{ pic1.size }}</small><br />
+                            <small><strong>dim:</strong> {{ pic1.width }} x {{ pic1.height }}</small>
+                            <p class="alert alert-danger" *ngIf="!pic1.canFit(catalogModel.pageWidth, catalogModel.pageHeight)">La largeur de l'image doit être supérieur ou égale à {{ catalogModel.pageWidth }} et la hauteur de l'image doit être supérieur ou égale à {{ catalogModel.pageHeight }}.</p>
+                        </div>
+                    </footer>
+                </mdb-card-body>
+                <!--/.Card content-->
+            </mdb-card>
+            <!--/.Card-->
+              <!-- <fa name="picture-o" size="4x"></fa>
+              <div  *ngIf="pic1" >
+                <mdb-card-img [src]="pic1.url"></mdb-card-img>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="preview">
+              <fa name="picture-o" size="4x" *ngIf="pic2==null"></fa>
+               <!--Card-->
+               <mdb-card class="mdb-card" *ngIf="pic2">
+                <!--Card image-->
+                <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                    <mdb-card-img [src]="pic2.url"></mdb-card-img>
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!--/Card image-->
+
+                <mdb-card-body class="mdb-card-body text-center">
+                    <footer class="row">
+                        <div class="col-md-4">
+                            <fa [class]="(pic2.isValid && pic2.canFit(catalogModel.pageWidth, catalogModel.pageHeight)) ? 'valid-icon' : 'invalid-icon'" [name]="(pic2.isValid && pic2.canFit(catalogModel.pageWidth, catalogModel.pageHeight)) ? 'check-circle' : 'times-circle'" size="2x"></fa>
+                        </div>
+                        <div id="infos" class="col-md-8">
+                            <small><strong>size:</strong> {{ pic2.size }}</small><br />
+                            <small><strong>dim:</strong> {{ pic2.width }} x {{ pic2.height }}</small>
+                            <p class="alert alert-danger" *ngIf="!pic2.canFit(catalogModel.pageWidth, catalogModel.pageHeight)">La largeur de l'image doit être supérieur ou égale à {{ catalogModel.pageWidth }} et la hauteur de l'image doit être supérieur ou égale à {{ catalogModel.pageHeight }}.</p>
+                        </div>
+                    </footer>
+                </mdb-card-body>
+                <!--/.Card content-->
+            </mdb-card>
+            <!--/.Card-->
+              <!-- <div  *ngIf="pic2" >
+                <mdb-card-img [src]="pic2.url"></mdb-card-img>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>

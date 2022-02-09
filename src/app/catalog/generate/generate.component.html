@@ -1,0 +1,72 @@
+<main class="d-flex flex-column">
+    <div id="page-content">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-7" *ngIf="step < 4">
+                    <h1 class="font-weight-light mt-4 text-white">ETAPE {{ step }} : {{STEPS_TITLE[step-1]}}</h1>
+                    <p class="lead text-white-50">{{ STEPS_SUBTITLE[step-1] }}</p>
+                </div>
+            </div>
+
+            <!-- COMPONENT : CHOIX DU MODELE -->
+            <app-model *ngIf="step === 1"></app-model>
+
+            <!-- COMPONENT : CHOIX IMAGES -->
+            <app-import *ngIf="step === 2" [showImport]="false"></app-import>
+
+            <!-- COMPONENT : PERSONNALISATION -->
+            <app-customize *ngIf="step === 3" [catalogModel]="selectedModel"></app-customize>
+
+            <!-- PREVIEW CATALOG GENERATED -->
+            <section *ngIf="catalog">
+                <div *ngFor="let page of catalog.pages" [id]="'page-' + page.id" class="page"></div>
+            </section>
+
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+
+            <nav class="row">
+                <div *ngIf="step === 1" class="col-md-6">
+                    <a href="/home" type="button" class="btn btn-danger">
+                        <fa name="times"></fa> Annuler
+                    </a>
+                </div>
+                <div *ngIf="step > 1" (click)="onClickPreviousStep();" class="col-md-6">
+                    <button type="button" class="btn btn-danger">
+                        <fa name="arrow-left"></fa> Etape précedente
+                    </button>
+                </div>
+                <div *ngIf="step < STEPS_TITLE.length" class="col-md-6">
+                    <button type="button" class="btn btn-info" (click)="onClickNextStep();">Etape suivante <fa
+                            name="arrow-right"></fa></button>
+                </div>
+                <div *ngIf="step === STEPS_TITLE.length" class="col-md-6">
+                    <button type="button" class="btn btn-warning" (click)="onClickNextStep();">Générer le catalogue <fa
+                            name="cogs"></fa></button>
+                </div>
+                <div *ngIf="step > STEPS_TITLE.length" class="col-md-6">
+                    <button type="button" class="btn btn-warning" (click)="onClickDownload();"> Télécharger <fa
+                            name="download"></fa></button>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Copyright &copy; turing-gallery</small>
+        </div>
+    </footer>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        
+      <p id="myModalContent"></p>
+    </div>
+  </div>
+  
+</main>

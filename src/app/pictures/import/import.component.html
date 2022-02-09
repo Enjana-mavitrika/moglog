@@ -1,0 +1,116 @@
+<header class="row col-md-12">
+    <div class="col-md-2">
+        <label mdbBtn color="default" size="md" class="waves-light" mdbWavesEffect>
+            <fa name="upload" size="2x"></fa><br/>
+            Importer des images depuis mon ordinateur
+            <input id="input-file" #file type="file" accept='image/*' (change)="preview(file.files)" multiple>
+        </label>
+    </div>
+    <div class="col-md-8">
+        <a href="/home" type="button" class="btn btn-danger">
+            Retour
+        </a>
+    </div>
+    <div class="col-md-2" id="infos">
+        <table aria-describedby="Import Infos">
+            <th id="head"></th>
+            <tr>
+                <td><mdb-badge class="mdb-badge" info="true">{{ pictures.length }}</mdb-badge></td>
+                <td><small>images ajoutés</small></td>
+            </tr>
+            <tr>
+                <td><mdb-badge class="mdb-badge" success="true">{{ validPictureCount }}</mdb-badge></td>
+                <td><small>images valides</small></td>
+            </tr>
+            <tr>
+                <td><mdb-badge class="mdb-badge" danger="true">{{ invalidPictureCount }}</mdb-badge></td>
+                <td><small>images invalides</small></td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+<section id="preview" (mouseleave)="onMouseleavePreview()">
+    <article *ngFor="let picture of pictures; index as i" (mouseover)="onMouseoverPicture(i)" [ngClass]="{'card': isShownDeletes['' + i]}">
+        <!-- Delete -->
+        <div *ngIf="isShownDeletes['' + i]" id="deletePicture" (click)="onClickDeletePicture(picture);basicModal.show()">
+            <fa name="trash" size="4x"></fa>
+            <p>Supprimer</p>
+        </div>
+        <!--/.Delete -->
+        <!--Card-->
+        <mdb-card class="mdb-card" *ngIf="!isShownDeletes['' + i]">
+            <!--Card image-->
+            <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                <mdb-card-img [src]="picture.url"></mdb-card-img>
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <!--/Card image-->
+
+            <mdb-card-body class="mdb-card-body text-center">
+                <footer class="row">
+                    <div class="col-md-4">
+                        <fa [class]="(picture.isValid) ? 'valid-icon' : 'invalid-icon'" [name]="(picture.isValid) ? 'check-circle' : 'times-circle'" size="2x"></fa>
+                    </div>
+                    <div id="infos" class="col-md-8">
+                        <small><strong>size:</strong> {{ picture.size }}</small><br />
+                        <small><strong>dim:</strong> {{ picture.width }} x {{ picture.height }}</small>
+                    </div>
+                </footer>
+            </mdb-card-body>
+            <!--/.Card content-->
+        </mdb-card>
+        <!--/.Card-->
+    </article>
+
+    <article *ngIf="pictures.length == 0 && !service.isUploading && service.isUploadOk == null">
+        <fa name="file-image-o"></fa>
+        Aucun fichier ajouté
+    </article>
+
+    <div [class]="(service.isUploadOk) ? 'alert alert-success' : 'alert alert-danger'" role="alert" *ngIf="service.uploadMessage">
+        {{ service.uploadMessage }}
+    </div>
+</section>
+
+<footer id="btn-container" *ngIf="showImport">
+    <div  *ngIf="service.isUploading" class="text-info">
+        <fa name="spinner" animation="spin" size="3x"></fa> <small> importation en cours...</small>
+    </div>
+    <button mdbBtn color="default" block="true" *ngIf="!service.isUploading && pictures.length > 0" (click)="startUpload()">
+        <fa name="cloud-upload" size="2x"></fa> IMPORTER
+    </button>
+</footer>
+
+<!-- Modal delete picture confirmation -->
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Suppression d'une image</h4>
+        </div>
+        <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir supprimer cette image ?</p>
+            <mdb-card class="mdb-card" *ngIf="deletedPicture !== null">
+                <!--Card image-->
+                <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                    <mdb-card-img [src]="deletedPicture.url"></mdb-card-img>
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+            </mdb-card>
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="primary" class="waves-light" aria-label="Close" (click)="basicModal.hide();reinitDeletedPicture();" mdbWavesEffect>Annuler</button>
+          <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="deletePicture();basicModal.hide();" mdbWavesEffect>Oui, supprimer cette image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- /.Modal delete picture confirmation -->

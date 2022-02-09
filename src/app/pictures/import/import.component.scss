@@ -1,0 +1,78 @@
+h2{
+    color: #008ae6;
+}
+
+#input-file {
+    display: none;
+}
+
+#infos .mdb-badge {
+    margin-right: 5px;
+}
+
+#preview {
+    display: flex;
+    flex: 200px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px dashed rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    position: relative;
+    min-height: 270px;
+    margin-top: 30px;
+}
+
+article {
+    width: 200px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.card {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background: #fff;
+    border-radius: 2px;
+    margin: 1rem;
+    height: 175px;
+    padding-top: 50px;
+}
+
+#deletePicture {
+    color: #ff4444;
+    cursor: pointer;
+}
+
+.mdb-card {
+    height: 175px;
+}
+
+.mdb-card-body footer {
+    height: 30px;
+    position: absolute;
+    bottom: 10px;
+    text-align: left;
+}
+
+.mdb-card-body footer #infos {
+    height: 20px;
+    font-size: 0.7em;
+}
+
+.valid-icon {
+    color: #00C851;
+}
+
+.invalid-icon {
+    color: #ff4444;
+}
+
+footer#btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 200px;
+}
+
+

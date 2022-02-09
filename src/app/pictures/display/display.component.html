@@ -1,0 +1,59 @@
+<div class="container">
+
+    <div class="row text-center text-lg-left">
+        <h1 class="font-weight-light text-lg-left mt-4 col-9">Galerie des images</h1>
+        <h5 class="text-lg-left mt-5 col-2" [hidden]="isPageEmpty()">Page : {{ actualpage }}</h5>
+        <a (click)="removePictures()" [hidden]="getTotalRemove()"><i class="fa fa-times red-text fa-4x"></i></a>
+    </div>
+
+    <hr class="mt-2 mb-5">
+
+    <div *ngIf="service.isUploading" class="text-center text-info">
+        <fa name="spinner" animation="spin" size="3x"></fa><br />Chargement en cours...
+    </div>
+
+    <h3 class="font-weight-light text-center" [hidden]="!isPicturesEmpty()">
+        Vous n'avez aucune image dans votre galerie.
+    </h3>
+
+    <div class="row text-center text-lg-left" [hidden]="isPageEmpty()">
+        <div id="pic{{pic.id}}" *ngFor="let pic of pictures" class="col-lg-3 col-md-4 col-6">
+            <a class="mb-4 h-100" [href]="pic.image">
+                <img class="img-fluid img-thumbnail" alt="Image" [src]="pic.image">
+            </a>
+            <div class="text-center">
+                <span class="col">{{ pic.title }}</span>
+                <a (click)="setRemove(pic.id)"><i class="fa fa-times red-text"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pagination" [hidden]="isPageEmpty()">
+        <span class="page-item">
+            <a class="page-link" aria-label="Previous" (click)="getPictures(actualpage - 1)"
+                (document:keydown.arrowleft)="!service.isUploading && actualpage != 1 && getPictures(actualpage - 1)"
+                [class.disabled]="actualpage == 1">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </span>
+        <span *ngFor="let page of total" class="page-item">
+            <a class="page-link" (click)="getPictures(page)" [class.disabled]="actualpage == page">{{ page }}</a>
+        </span>
+        <span class="page-item">
+            <a class="page-link" aria-label="Next" (click)="getPictures(actualpage + 1)"
+                (document:keydown.arrowright)="!service.isUploading && actualpage != getTotalPage() && getPictures(actualpage + 1)"
+                [class.disabled]="actualpage == getTotalPage()">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </span>
+    </div>
+
+    <div class="text-center">
+        <a href="/home" type="button" class="btn btn-danger">
+            Retour
+        </a>
+    </div>
+
+</div>

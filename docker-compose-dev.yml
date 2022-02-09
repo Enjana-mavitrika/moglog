@@ -1,0 +1,13 @@
+version: '3'
+services:
+  moglog:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev 
+    ports:
+      - "8081:4200"
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev 
+    command: ["npm", "test"]

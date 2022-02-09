@@ -1,0 +1,392 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body>
+
+    <header id="header" class="header header-hide">
+        <div class="container">
+
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="/home#hero">Home</a></li>
+                    <li><a href="/home#about-us">Accueil</a></li>
+                    <li><a href="/home#features">Caractéristiques</a></li>
+                    <li><a *ngIf="!isConnected" href="/connexion">Login</a></li>
+                    <li><a *ngIf="!isConnected" href="/inscription">Inscription</a></li>
+                    <li><a href="/home#contact">Contact</a></li>
+                    <li><a *ngIf="isConnected" href="/logout">Logout</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+    <!--==========================
+      Hero Section
+      ============================-->
+    <section id="hero" class="wow fadeIn">
+        <div class="hero-container">
+            <h1>Bienvenue à Turing Gallery</h1>
+            <h2>création des catalogues pour les professionnels</h2>
+            <img src="./assets/img/hero.png" width=50%>
+            <div>
+                <a href="/pictures/import" class="btn-get-started scrollto">Importer des images</a>
+                <a href="/catalog/generate" class="btn-get-started scrollto">Générer un catalogue</a>
+                <a href="/pictures/display" class="btn-get-started scrollto">Visualiser la galerie</a>
+            </div>
+        </div>
+    </section>
+
+    <!--==========================
+      About Us Section
+      ============================-->
+    <section id="about-us" class="about-us padd-section wow fadeInUp">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-md-5 col-lg-3">
+                    <img src="./assets/img/logo.png" alt="About">
+                </div>
+
+
+                <div class="col-md-7 col-lg-5">
+                    <div class="about-content">
+
+                        <h2><span> Turing Gallery</span> </h2>
+                        <p>
+                            « Turing Gallery » permettra aux photographes, aux artistes et aux
+                            vendeurs de stocker leurs photos et œuvres sur le Cloud. Ensuite, à partir d’un
+                            ensemble d’images et d’un modèle d’affichage choisis par l’utilisateur,
+                            un catalogue est généré où ces images seront organisées selon le modèle
+                            prédéfini.
+                        </p>
+
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-angle-right"></i>Design attractive</li>
+                            <li><i class="fa fa-angle-right"></i>Rapidité de création</li>
+                            <li><i class="fa fa-angle-right"></i>Utilisation facile</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--==========================
+      Features Section
+      ============================-->
+    <section id="features" class="padd-section text-center wow fadeInUp">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Caractéristiques</h2>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="feature-block">
+                        <img src="./assets/img/svg/paint-palette.svg" alt="img" class="img-fluid">
+                        <h4>Design attractive</h4>
+                        <p>Turing Gallery propose des modèles de catalogues très attractive</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-block">
+                        <img src="./assets/img/svg/vector.svg" alt="img" class="img-fluid">
+                        <h4>Rapidité de création</h4>
+                        <p>Vous pouvez faire votre catalogue professionnel en 10 minutes seulement.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-block">
+                        <img src="./assets/img/svg/design-tool.svg" alt="img" class="img-fluid">
+                        <h4>Utilisation facile </h4>
+                        <p>L'utilisation de Turing Gallery est très facile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="team" class="padd-section text-center wow fadeInUp">
+
+        <div class="container">
+            <div class="section-title text-center">
+
+                <h2>Les membres de l'équipe</h2>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-1">
+
+                </div>
+                <div class="col-md-2">
+                    <div class="team-block bottom">
+                        <img src="./assets/img/team/1.jpg" class="img-responsive" alt="img">
+                        <div class="team-content">
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/solofo-raboanarijaona-1b1078146/"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                            <span>Devéloppeur</span>
+                            <h4>Solofo</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="team-block bottom">
+                        <img src="./assets/img/team/2.jpg" class="img-responsive" alt="img">
+                        <div class="team-content">
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/ibrahima-bory-diallo/"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                            <span>Développeur</span>
+                            <h4>Ibrahima</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="team-block bottom">
+                        <img src="./assets/img/team/3.jpg" class="img-responsive" alt="img">
+                        <div class="team-content">
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/elias-romdan-208ab0176/"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                            <span>Développeur</span>
+                            <h4>Elias</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="team-block bottom">
+                        <img src="./assets/img/team/7.jpg" class="img-responsive" alt="img">
+                        <div class="team-content">
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/fares-dabek/"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                            <span>Développeur</span>
+                            <h4>Fares</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="team-block bottom">
+                        <img src="./assets/img/team/4.jpg" class="img-responsive" alt="img">
+                        <div class="team-content">
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/solofo-raboanarijaona-1b1078146/"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                            <span>Développeur</span>
+                            <h4>Nicolas</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!--==========================
+      Blog Section
+      ============================-->
+
+    <!--==========================
+      Contact Section
+      ============================-->
+    <section id="contact" class="padd-section wow fadeInUp">
+
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Contact</h2>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-3 col-md-4">
+
+                    <div class="info">
+                        <div>
+                            <i class="fa fa-map-marker"></i>
+                            <p>saint etienne </p>
+                        </div>
+
+                        <div class="email">
+                            <i class="fa fa-envelope"></i>
+                            <p>info@example.com</p>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-phone"></i>
+                            <p>0606060606</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-5 col-md-8">
+                    <div class="form">
+                        <div id="sendmessage">Votre message est envoyé. merci !</div>
+                        <div id="errormessage"></div>
+                        <form action="" method="post" role="form" class="contactForm">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                                    data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject"
+                                    placeholder="Subject" data-rule="minlen:4"
+                                    data-msg="Please enter at least 8 chars of subject" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="5" data-rule="required"
+                                    data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="text-center"><button type="submit">Send Message</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- #contact -->
+
+    <!--==========================
+      Footer
+      ============================-->
+    <!--==========================
+    Footer
+    ============================-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-lg-4">
+                    <div class="footer-logo">
+
+                        <a class="navbar-brand" href="#">TURING GALLERY</a>
+                        <a class="navbar-brand" href="https://www.cjoint.com/doc/17_12/GLnmzFxp4tM_rgpd.pdf">RGPD</a>
+
+
+                        <p></p>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+
+                        <h4>Abou Us</h4>
+
+                        <ul class="list-unstyled">
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Features item</a></li>
+                            <li><a href="#">Live streaming</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+
+                        <h4>Abou Us</h4>
+
+                        <ul class="list-unstyled">
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Features item</a></li>
+                            <li><a href="#">Live streaming</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+
+                        <h4>Support</h4>
+
+                        <ul class="list-unstyled">
+                            <li><a href="#">faq</a></li>
+                            <li><a href="#">Editor help</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+
+                        <h4>Abou Us</h4>
+
+                        <ul class="list-unstyled">
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Live streaming</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="copyrights">
+            <div class="container">
+                <p>&copy; Copyrights ESI Digital Corp. All rights reserved.</p>
+                <div class="credits">
+
+                    <div class="container">
+
+
+                        <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
