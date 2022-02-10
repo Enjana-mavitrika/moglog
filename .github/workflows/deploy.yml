@@ -21,6 +21,6 @@ jobs:
           application_name: moglog
           environment_name: Moglog-env
           existing_bucket_name: elasticbeanstalk-eu-west-3-014783202930
-          region: us-east-1
+          region: eu-west-3
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
