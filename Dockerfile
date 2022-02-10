@@ -12,4 +12,5 @@ RUN npm run build
 
 FROM nginx
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
 COPY --from=builder /app/dist/turing-gallery /usr/share/nginx/html
